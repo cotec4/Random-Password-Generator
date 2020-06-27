@@ -69,9 +69,11 @@ function generatePassword() {
             }
         }
     }
+    // If all selections are false, alerting that one must be chosen
     if (lowerQ === false && upperQ === false && numQ === false && specialQ === false) {
         alert("There has to be at least one variable included!");
     }
+    
     else if (lowerQ === true && upperQ === false && numQ === false && specialQ === false) {
         lower(numChar);
         return password;
