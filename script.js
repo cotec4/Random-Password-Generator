@@ -11,7 +11,13 @@ function randomChoice(array) {
     return array[randomNumber(array)];
 }
 function randomCharacter(characters) {
-    return 
+    return
+}
+
+function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
 }
 
 function generatePassword() {
@@ -26,30 +32,28 @@ function generatePassword() {
         var specialQ = confirm("Do you want to include special characters in your password?");
         function lower(numChar) {
             if (lowerQ === true) {
-                for (var i = 0; i < numChar; i++) {
+                for (var i = 0; i <= numChar; i++) {
                     password += randomChoice(lowerChoice);
-                    return password;
-                    console.log(password);
                 }
             }
         }
         function upper(numChar) {
             if (upperQ === true) {
-                for (var i = 0; i < parseInt(numChar); i++) {
+                for (var i = 0; i <= numChar; i++) {
                     password += randomChoice(upperChoice);
                 }
             }
         }
         function numF(numChar) {
             if (numQ === true) {
-                for (var i = 0; i < parseInt(numChar); i++) {
+                for (var i = 0; i <= numChar; i++) {
                     password += randomChoice(numberChoice);
                 }
             }
         }
         function special(numChar) {
             if (specialQ === true) {
-                for (var i = 0; i < parseInt(numChar); i++) {
+                for (var i = 0; i <= numChar; i++) {
                     password += randomChoice(specialCharChoice);
                 }
             }
@@ -64,20 +68,17 @@ function generatePassword() {
         console.log(password);
     }
     else if (lowerQ === true && upperQ === true && numQ === false && specialQ === false) {
-        randomCharacter()
         lower(numChar / 2) + upper(numChar / 2);
         return password;
         console.log(password);
     }
     else if (lowerQ === true && upperQ === true && numQ === true && specialQ === false) {
-        randomCharacter()
         lower(numChar / 3) + upper(numChar / 3) + numF(numChar / 3);
         return password;
         console.log(password);
     }
     else if (lowerQ === true && upperQ === true && numQ === true && specialQ === true) {
-        randomCharacter()
-        lower(numChar / 4) + upper(numChar / 4) + numF(numChar / 4) + special(numChar/4);
+        lower(numChar / 4) + upper(numChar / 4) + numF(numChar / 4) + special(numChar / 4);
         return password;
         console.log(password);
     }
@@ -87,10 +88,5 @@ function generatePassword() {
 }
 console.log(randomChoice(password));
 
-function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-    passwordText.value = password;
-}
 generateBtn.addEventListener("click", writePassword);
 // console.log(passwordText);
