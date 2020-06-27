@@ -25,6 +25,7 @@ function writePassword() {
 }
 
 function generatePassword() {
+    var password = "";
     // Prompting to determine how many characters the password is going to be (forcing a range of 8 to 128 characters)
     var numChar = prompt("How many characters do you want in the password? (Must be between 8 and 128 characters)")
     if (numChar < 8 || numChar > 128) {
@@ -73,7 +74,7 @@ function generatePassword() {
     if (lowerQ === false && upperQ === false && numQ === false && specialQ === false) {
         alert("There has to be at least one variable included!");
     }
-    
+
     else if (lowerQ === true && upperQ === false && numQ === false && specialQ === false) {
         lower(numChar);
         return password;
@@ -96,9 +97,9 @@ function generatePassword() {
     }
     // What if we had a function that's only purpose is to randomize and get an Element from an array?
 
-    console.log(randomChoice(password));
+    console.log(password);
 }
-console.log(randomChoice(password));
+console.log(password);
 
 generateBtn.addEventListener("click", writePassword);
 // console.log(passwordText);
