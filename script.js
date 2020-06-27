@@ -1,13 +1,17 @@
 var generateBtn = document.querySelector("#generate");
 var lowerChoice = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upperChoice = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numberChoice = ["1", "2", "3", "4", "5","6", "7", "8", "9"];
+var numberChoice = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var specialCharChoice = ["'", ".", ",", ":", ";", "=", "?", "/", "_", "~", "|", "&quot", "&apos", "&amp", "&lt", "&gt", "!", "$", "#", "%", "(", ")", "*", "[", "]", "+", "-"];
 
-function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-    passwordText.value = password;
+function randomNumber(array) {
+    return Math.floor(Math.random() * array.length);
+}
+function randomChoice(array) {
+    return array[randomNumber(array)];
+}
+function randomCharacter(characters) {
+    return 
 }
 
 function generatePassword() {
@@ -16,34 +20,77 @@ function generatePassword() {
         alert("Please pick a number between 8 and 128");
     }
     else {
-        var lowerCase = confirm("Do you want to include lowercase letters in your password?");
-        var upperCase = confirm("Do you want to include uppercase letters in your password?");
-        var numIncl = confirm("Do you want to include numeric values in your password?");
-        var special = confirm("Do you want to include special characters in your password?");
+        var lowerQ = confirm("Do you want to include lowercase letters in your password?");
+        var upperQ = confirm("Do you want to include uppercase letters in your password?");
+        var numQ = confirm("Do you want to include numeric values in your password?");
+        var specialQ = confirm("Do you want to include special characters in your password?");
+        function lower(numChar) {
+            if (lowerQ === true) {
+                for (var i = 0; i < numChar; i++) {
+                    password += randomChoice(lowerChoice);
+                    return password;
+                    console.log(password);
+                }
+            }
+        }
+        function upper(numChar) {
+            if (upperQ === true) {
+                for (var i = 0; i < parseInt(numChar); i++) {
+                    password += randomChoice(upperChoice);
+                }
+            }
+        }
+        function numF(numChar) {
+            if (numQ === true) {
+                for (var i = 0; i < parseInt(numChar); i++) {
+                    password += randomChoice(numberChoice);
+                }
+            }
+        }
+        function special(numChar) {
+            if (specialQ === true) {
+                for (var i = 0; i < parseInt(numChar); i++) {
+                    password += randomChoice(specialCharChoice);
+                }
+            }
+        }
     }
-    // if (lowerCase === true) { words += lowerChoice };
-    // if (UpperCase === true) { words += upperChoice };
-    // if (mnumIncl === true) { words += numberChoice };
-    // if (special === true) { words += specialCharChoice };
-    
-    if (lowerCase === false && upperCase === false && numIncl === false && special === false) {
+    if (lowerQ === false && upperQ === false && numQ === false && specialQ === false) {
         alert("There has to be at least one variable included!");
     }
-    else if (lowerCase === true && upperCase === true && numIncl === true && special === true) {
-        while (parseInt(passwordText) < parseInt(numChar)) {
-            var passwordText = passwordText += lowerChoices[Math.floor(Math.random() *parseInt(numChar))] + upperChoices[Math.floor(Math.random() *parseInt(numChar))] + numberChoice[Math.floor(Math.random() *parseInt(numChar))];
-        }
-        // for (var i = 0; i < numChar; i++) {
-        //     symbol = Math.floor(Math.random() * parseInt(numChar));
-        //     passwordText = lowerChoice[symbol] + upperChoice[symbol] + numberChoice[symbol] + specialCharChoice[symbol];
-        // }
+    else if (lowerQ === true && upperQ === false && numQ === false && specialQ === false) {
+        lower(numChar);
+        return password;
+        console.log(password);
     }
-    console.log(passwordText);
-    // else if (lowerCase === true && upperCase === true && numIncl === true && special === false) {
-    // }
-    // else if (lowerCase === true && upperCase === true && numIncl === false && special === false) {
-    // }
-    // else if (lowerCase === true && upperCase === false && numIncl === false && special === false) {
-    // }
+    else if (lowerQ === true && upperQ === true && numQ === false && specialQ === false) {
+        randomCharacter()
+        lower(numChar / 2) + upper(numChar / 2);
+        return password;
+        console.log(password);
+    }
+    else if (lowerQ === true && upperQ === true && numQ === true && specialQ === false) {
+        randomCharacter()
+        lower(numChar / 3) + upper(numChar / 3) + numF(numChar / 3);
+        return password;
+        console.log(password);
+    }
+    else if (lowerQ === true && upperQ === true && numQ === true && specialQ === true) {
+        randomCharacter()
+        lower(numChar / 4) + upper(numChar / 4) + numF(numChar / 4) + special(numChar/4);
+        return password;
+        console.log(password);
+    }
+    // What if we had a function that's only purpose is to randomize and get an Element from an array?
+
+    console.log(randomChoice(password));
+}
+console.log(randomChoice(password));
+
+function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
 }
 generateBtn.addEventListener("click", writePassword);
+// console.log(passwordText);
