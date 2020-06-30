@@ -13,6 +13,15 @@ function randomNumber(array) {
 function randomChoice(array) {
     return array[randomNumber(array)];
 }
+// Creating a shuffling function to shuffle a string of letters for the ending password
+function shuffle(password) {
+    var arr = password.split("");
+    arr.sort(function() {
+        return 0.5 - Math.random();
+    });
+    password = arr.join("");
+    return password;
+}
 
 function writePassword() {
     var password = generatePassword();
@@ -32,28 +41,38 @@ function generatePassword() {
     // Once correct character amount is picked, confirming what needs to be included in the password
     else {
         var confirmArray = [];
+        var initialCharAdded = 0;
         var lowerQ = confirm("Do you want to include lowercase letters in your password?");
         var upperQ = confirm("Do you want to include uppercase letters in your password?");
         var numQ = confirm("Do you want to include numeric values in your password?");
         var specialQ = confirm("Do you want to include special characters in your password?");
         // Conditional on the lowerQ being true then push to the combined array 
         if (lowerQ === true) {
+            password += randomChoice(lowerChoice);
             confirmArray.push(lowerChoice);
+            initialCharAdded++;
         }
         // Conditional on the upperQ being true then push to the combined array 
         if (upperQ === true) {
+            password += randomChoice(upperChoice);
             confirmArray.push(upperChoice);
+            initialCharAdded++;
         }
         // Conditional on the numberQ being true then push to the combined array 
         if (numQ === true) {
+            password += randomChoice(numberChoice);
             confirmArray.push(numberChoice);
+            initialCharAdded++;
         }
         // Conditional on the specialQ being true then push to the combined array 
         if (specialQ === true) {
+            password += randomChoice(specialCharChoice);
             confirmArray.push(specialCharChoice);
+            initialCharAdded++;
         }
-        for (var i = 0; i < numChar; i++) {
+        for (var i = 0; i < (numChar - initialCharAdded); i++) {
             password += randomChoice(confirmArray[randomNumber(confirmArray)]);
+            password = shuffle(password);
         }
         return password;
     }
