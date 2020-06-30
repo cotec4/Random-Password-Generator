@@ -46,6 +46,12 @@ function generatePassword() {
         var upperQ = confirm("Do you want to include uppercase letters in your password?");
         var numQ = confirm("Do you want to include numeric values in your password?");
         var specialQ = confirm("Do you want to include special characters in your password?");
+        // If no variable is chosen, alert that at least one variable has to be selected
+        if (lowerQ === false && upperQ === false && numQ === false && specialQ === false) {
+            alert("Your password has to include something!");
+            password = "";
+            return password
+        }
         // Conditional on the lowerQ being true then push to the combined array 
         if (lowerQ === true) {
             password += randomChoice(lowerChoice);
